@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="babylon">
+    <head>
+        <style>
+            .ng-hide { display: none!important; }
+        </style>
+        <title>Babylon</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+        <base href="/">
+
+        <link rel="stylesheet" href="styles/normalize.css">
+        <link rel="stylesheet" href="styles/babylon.css">
+    </head>
+    <body>
+        <header class="byn-header" role="banner">
+           <div class="byn-logo">
+                <img src="images/heart.svg" alt="">
+           </div>
+            <nav class="byn-nav" role="navigation">
+                <a class="byn-nav-link" href="/">Home</a>
+                <a class="byn-nav-link" href="/#/booking">Book a Consultation</a>
+            </nav>
+        </header>
+
+        <main class="byn-main" role="main">
+            <div ng-view=""></div>
+        </main>
+
+        <footer class="byn-footer" role="footer">
+
+        </footer>
+
+        <script src="vendor/angular.min.js"></script>
+        <script src="vendor/angular-route.min.js"></script>
+
+        <script src="src/client/app/babylon.module.js"></script>
+
+        <script src="src/client/app/intro/intro.module.js"></script>
+        <script src="src/client/app/intro/intro.controller.js"></script>
+
+        <script src="src/client/app/core/core.module.js"></script>
+
+        <script src="src/client/app/booking/booking.module.js"></script>
+
+    </body>
+</html>

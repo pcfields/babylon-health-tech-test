@@ -1,0 +1,172 @@
+<h1>Book a consultation</h1>
+
+<section class="byn-booking">
+
+    <!-- Family Members -->
+    <section class="booking-section">
+        <h2 class="booking-section-title">Book this consultation for</h2>
+        <div class="byn-avatar-list">
+            <figure class="byn-avatar"
+                    ng-repeat="person in booking.family"
+                    ng-click="booking.setFamilyMember($index)"
+                    ng-class="{'is-selected': booking.isFamilyMemberSelected($index)}">
+
+                <img class="byn-avatar-image"
+                     ng-src="{{person.imageUrl}}"
+                     alt="" />
+
+                <figcaption class="byn-avatar-caption">
+                    {{ person.name }}
+                </figcaption>
+            </figure>
+        </div>
+
+    </section>
+
+    <!-- Healthcare professionals -->
+    <section class="booking-section">
+        <h2 class="booking-section-title">Select a healthcare professional</h2>
+
+        <div class="byn-avatar-list">
+            <figure class="byn-avatar"
+                    ng-repeat="professional in booking.healthcareProfessionals"
+                    ng-class="{'is-selected': booking.isHealthcareProfessionalSelected($index)}"
+                    ng-click="booking.setHealthcareProfessional($index)">
+
+                <img class="byn-avatar-image"
+                     ng-src="{{professional.imageUrl}}"
+                     alt="" />
+
+                <figcaption class="byn-avatar-caption">
+                    {{ professional.text }}
+                </figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <!-- Doctors -->
+    <section class="booking-section">
+        <h2 class="booking-section-title">Select a doctor</h2>
+
+        <button
+           class="btn-v2"
+           ng-click="booking.showDoctorsList()">
+
+            <span
+                  ng-hide="booking.isDoctorSelected()">
+                    Please select a doctor
+            </span>
+            <span
+                  ng-show="booking.isDoctorSelected()">
+                    {{ booking.getAppointmentDetails().doctor.name }}
+            </span>
+        </button>
+
+        <div
+             role="dialog"
+             class="byn-modal"
+             ng-show="booking.isDoctorsListVisible()"
+             ng-class="{'is-visible': booking.isDoctorsListVisible()}">
+
+            <div class="byn-modal-dialog">
+               <section class="byn-modal-content">
+                   <header class="byn-modal-header">
+                       <h1 class="byn-modal-header-title">Select Doctor</h1>
+                   </header>
+
+                    <ul class="byn-text-list">
+                        <li
+                           class="byn-text-list-item"
+                           ng-repeat="doctor in booking.doctors"
+                           ng-click="booking.setDoctor($index)">
+                            {{ doctor.name }}
+                        </li>
+                    </ul>
+                   <footer class="byn-modal-footer">
+                        <button
+                            class="btn-v3"
+                            ng-click="booking.hideDoctorsList()">Cancel</button>
+                    </footer>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appointments -->
+    <section class="booking-section">
+        <h2 class="booking-section-title">Next available appointment</h2>
+
+        <button
+                class="btn-v2"
+                ng-click="booking.showAppointmentsList()">
+
+            <div
+                class="appointment-selected"
+                ng-show="booking.isAppointmentSelected()">
+
+                        {{ booking.getAppointmentDetails().appointmentDetails.date }} at
+                        {{ booking.getAppointmentDetails().appointmentDetails.time }}
+            </div>
+
+            <div
+                ng-hide="booking.isAppointmentSelected()">
+
+                  Click to select a time
+            </div>
+            <div
+                 ng-show="booking.isAppointmentSelected()">
+
+                Click to select a different time
+            </div>
+        </button>
+
+        <div
+             role="dialog"
+             class="byn-modal"
+             ng-show="booking.isAppointmentsListVisible()"
+             ng-class="{'is-visible': booking.isAppointmentsListVisible()}">
+
+            <div class="byn-modal-dialog">
+                <section class="byn-modal-content">
+                    <header class="byn-modal-header">
+                        <h1 class="byn-modal-header-title">Select Appointment</h1>
+                    </header>
+
+                    <ul class="byn-text-list">
+                        <li
+                            class="byn-text-list-item"
+                            ng-repeat="appointment in booking.appointmentDetails"
+                            ng-click="booking.setAppointment($index)">
+
+                            {{ appointment.date }} at {{ appointment.time }}
+                        </li>
+                    </ul>
+                    <footer class="byn-modal-footer">
+                        <button
+                                class="btn-v3"
+                                ng-click="booking.hideAppointmentsList()">
+
+                                Cancel
+                        </button>
+                    </footer>
+                </section>
+            </div>
+    </section>
+
+    <!-- Photo upload -->
+    <section class="booking-section">
+        <h2 class="booking-section-title">Get the best form your consultation by uploading a photo or a note</h2>
+
+        icon attach a photo
+        add a note
+    </section>
+
+    <!-- Buttons -->
+    <section class="booking-section">
+        <button class="btn-v1"
+            ng-click="booking.saveAppointmentDetails()">
+
+            Book Consultation
+        </button>
+    </section>
+</section>
